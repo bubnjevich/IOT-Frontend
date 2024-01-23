@@ -1,0 +1,11 @@
+
+
+<div class="pin-div">
+  <code-input   [isCodeHidden]="false"
+                [codeLength]="4"
+                (codeChanged)="onCodeChanged($event)"
+                (codeCompleted)="onCodeCompleted($event)">
+  </code-input>
+  <button (click)="send()">SEND</button>
+
+</div>

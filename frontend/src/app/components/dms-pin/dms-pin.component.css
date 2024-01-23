@@ -1,0 +1,39 @@
+code-input {
+    --item-spacing: 10px;
+    --item-height: 3em;
+    --item-border: none;
+    --item-border-bottom: 2px solid #dddddd;
+    --item-border-has-value: none;
+    --item-border-bottom-has-value: 2px solid #fff8f8;
+    --item-border-focused: none;
+    --item-border-bottom-focused: 2px solid #809070;
+    --item-shadow-focused: none;
+    --item-border-radius: 0px;
+  margin-bottom: +20px;
+
+
+      color: white;
+  }
+
+
+.pin-div {
+  height: 140px;
+  width: 300px;
+  border-radius: 10px;
+  background: var(--navy-blue);;
+}
+
+button {
+
+
+  border: none;
+  background-color: white;
+  margin-top: +20px;
+  margin-left: +100px;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: var(--navy-blue);
+
+}

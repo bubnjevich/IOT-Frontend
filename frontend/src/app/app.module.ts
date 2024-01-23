@@ -36,7 +36,9 @@ import { CreateAlarmComponent } from './components/create-alarm/create-alarm.com
 import {MatRadioModule} from '@angular/material/radio';
 import { SensorGrafanaComponent } from './components/sensor-grafana/sensor-grafana.component';
 import { CommonModule } from '@angular/common';
+import { DmsPinComponent } from './components/dms-pin/dms-pin.component';
 
+import { CodeInputModule } from 'angular-code-input';
 
 
 
@@ -60,7 +62,8 @@ import { CommonModule } from '@angular/common';
     AlertedAlarmsComponent,
     ReportComponent,
     CreateAlarmComponent,
-    SensorGrafanaComponent
+    SensorGrafanaComponent,
+    DmsPinComponent
   ],
   imports: [
     MatRadioModule,
@@ -80,6 +83,11 @@ import { CommonModule } from '@angular/common';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CodeInputModule,
+ CodeInputModule.forRoot({
+      codeLength: 4,
+      isCharsCode: true,
+    }),
     [CommonModule],
   ],
   providers: [],

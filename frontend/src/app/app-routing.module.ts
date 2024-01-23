@@ -7,6 +7,7 @@ import { AlarmsPageComponent } from './pages/alarms-page/alarms-page.component';
 import { DatabasePageComponent } from './pages/database-page/database-page.component';
 import { ReportsPageComponent } from './pages/reports-page/reports-page.component';
 import { SensorGrafanaComponent } from './components/sensor-grafana/sensor-grafana.component';
+import {DmsPinComponent} from "./components/dms-pin/dms-pin.component";
 
 const routes: Routes = [
   {path:'trending', component: TrendingPageComponent, canActivate: [AuthGuard]},
