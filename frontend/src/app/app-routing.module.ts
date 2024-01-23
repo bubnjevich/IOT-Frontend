@@ -13,7 +13,7 @@ const routes: Routes = [
   {path:'alarms', component: AlarmsPageComponent, canActivate: [AuthGuard]},
   {path:'database', component: DatabasePageComponent, canActivate: [AuthGuard]},
   {path:'reports', component: ReportsPageComponent, canActivate: [AuthGuard]},
-  {path: 'grafana', component: SensorGrafanaComponent, canActivate: [AuthGuard]},
+  {path: 'grafana/:sensor', component: SensorGrafanaComponent, canActivate: [AuthGuard]},
   {path: '**',  redirectTo: '/trending'}
 ];
 

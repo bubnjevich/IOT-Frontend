@@ -35,6 +35,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CreateAlarmComponent } from './components/create-alarm/create-alarm.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { SensorGrafanaComponent } from './components/sensor-grafana/sensor-grafana.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -78,7 +79,8 @@ import { SensorGrafanaComponent } from './components/sensor-grafana/sensor-grafa
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    [CommonModule],
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { GrafanaService} from "../../services/grafana.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-sensor-grafana',
@@ -7,16 +8,17 @@ import { GrafanaService} from "../../services/grafana.service";
   styleUrls: ['./sensor-grafana.component.css']
 })
 export class SensorGrafanaComponent implements OnInit{
-     dashboardUrl: string;
+     sensor : string = "";
 
-     constructor(private grafanaService: GrafanaService) {
-           this.dashboardUrl = this.grafanaService.getDHTDashboardUrl();
+     constructor(private grafanaService: GrafanaService, private route: ActivatedRoute) {
 
      }
 
     ngOnInit() {
-    this.dashboardUrl = this.grafanaService.getDHTDashboardUrl();
-    console.log(this.dashboardUrl);
+     this.route.params.subscribe(params => {
+       this.sensor = params['sensor'];
+    });
+
     }
 
 }
