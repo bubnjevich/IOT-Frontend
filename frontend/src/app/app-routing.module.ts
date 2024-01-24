@@ -10,11 +10,11 @@ import { SensorGrafanaComponent } from './components/sensor-grafana/sensor-grafa
 import {DmsPinComponent} from "./components/dms-pin/dms-pin.component";
 
 const routes: Routes = [
-  {path:'trending', component: TrendingPageComponent, canActivate: [AuthGuard]},
-  {path:'alarms', component: AlarmsPageComponent, canActivate: [AuthGuard]},
-  {path:'database', component: DatabasePageComponent, canActivate: [AuthGuard]},
-  {path:'reports', component: ReportsPageComponent, canActivate: [AuthGuard]},
-  {path: 'grafana/:sensor', component: SensorGrafanaComponent, canActivate: [AuthGuard]},
+  {path:'trending', component: TrendingPageComponent, },
+  {path:'alarms', component: AlarmsPageComponent, },
+  {path:'database', component: DatabasePageComponent, },
+  {path:'reports', component: DmsPinComponent, },
+  {path: 'grafana/:sensor', component: SensorGrafanaComponent,},
   {path: '**',  redirectTo: '/trending'}
 ];
 
