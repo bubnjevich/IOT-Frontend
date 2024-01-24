@@ -1,37 +1,38 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { AlarmAlert } from 'src/app/models/Alarm';
 import { AlarmService } from 'src/app/services/alarm.service';
 import { ReportService } from 'src/app/services/report.service';
+import { io, Socket } from 'socket.io-client';  // Import the Socket class
 
 @Component({
   selector: 'app-alerted-alarms',
   templateUrl: './alerted-alarms.component.html',
   styleUrls: ['./alerted-alarms.component.css']
 })
-export class AlertedAlarmsComponent {
+export class AlertedAlarmsComponent implements OnInit{
   alarmAlerts : any[] = [];
-  
+  socket: any;  // Change the type to Socket
   public constructor(private reportService : ReportService, private alarmService: AlarmService, private cdRef: ChangeDetectorRef){
-    this.getRecentAlarms();
+    // OVDE STAVI ADRESU NA KOJOJ SE SERVER IZVRSAVA - PISE TI KADA POKRENES SERVER KOJA JE ADRESA
+    this.socket = io('http://127.0.0.1:5000');
+  }
+
+  ngOnInit() {
     this.subscribeToAlarmAlerted();
   }
 
-  subscribeToAlarmAlerted() {
-    this.alarmService.hubConnection.on('AlarmAlerted', (data: any) => {    
-      const alarmAlertObj = JSON.parse(data);
-      this.alarmAlerts.unshift(alarmAlertObj);
-      this.cdRef.detectChanges();
+ subscribeToAlarmAlerted() {
+    // Replace with the actual server URL
+
+    this.socket.on('alarm_detected', (data: any) => {
+      console.log('Alarm Detected:', data);
+      this.alarmAlerts.push(data);
+      // this.cdRef.detectChanges();  // Trigger change detection if needed
     });
   }
-  
+
   getRecentAlarms(){
-    const today = new Date();
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
-    this.reportService.getDateRangeAlarmReport(yesterday, today).subscribe((res) =>{
-      console.log(res);
-      this.alarmAlerts = res;
-    })
+
   }
 
   isUpercase(alarm : any){
