@@ -5,7 +5,13 @@
     
     <div class="workspace" id="workspace">
         <p class="database">{{title}}</p>  
-        <app-database-table></app-database-table>
+        <form (submit)="setAlarm($event)">
+            <label for="alarmTime">Set Alarm Time:</label>
+            <input type="time" id="alarmTime" name="alarmTime">
+            <input type="submit" value="Set Alarm">
+            <p *ngIf="alarmSet">Set Alarm: {{ alarmTime }}</p>
+            <button *ngIf="alarmActive" (click)="disableAlarm()">Disable Alarm</button>
+        </form>
     </div>
 </div>
 

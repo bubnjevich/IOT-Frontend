@@ -11,13 +11,8 @@ export class NavbarComponent {
 
   showSharedDropdown : boolean
 
-  constructor(private authService : AuthenticationService, private alarmService : AlarmService){
+  constructor(private authService : AuthenticationService){
     this.showSharedDropdown = false;
-    this.alarmService.hubConnection.on('AlarmAlerted', (data: any) => {    
-      const alarmAlertObj = JSON.parse(data);
-      //this.alarmAlerts.unshift(alarmAlertObj);
-      //this.cdRef.detectChanges();
-    });
   }
 
   logout(){
