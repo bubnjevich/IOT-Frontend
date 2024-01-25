@@ -8,13 +8,16 @@ import { DatabasePageComponent } from './pages/database-page/database-page.compo
 import { ReportsPageComponent } from './pages/reports-page/reports-page.component';
 import { SensorGrafanaComponent } from './components/sensor-grafana/sensor-grafana.component';
 import {DmsPinComponent} from "./components/dms-pin/dms-pin.component";
+import { RgbPageComponent } from './pages/rgb-page/rgb-page.component';
 
 const routes: Routes = [
   {path:'trending', component: TrendingPageComponent, },
   {path:'alarms', component: AlarmsPageComponent, },
   {path:'database', component: DatabasePageComponent, },
-  {path:'reports', component: DmsPinComponent, },
+  {path:'reports', component: ReportsPageComponent, },
   {path: 'grafana/:sensor', component: SensorGrafanaComponent,},
+  {path: 'rgb', component: RgbPageComponent,},
+
   {path: '**',  redirectTo: '/trending'}
 ];
 

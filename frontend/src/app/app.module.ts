@@ -39,6 +39,7 @@ import { CommonModule } from '@angular/common';
 import { DmsPinComponent } from './components/dms-pin/dms-pin.component';
 
 import { CodeInputModule } from 'angular-code-input';
+import { RgbPageComponent } from './pages/rgb-page/rgb-page.component';
 
 
 
@@ -63,7 +64,8 @@ import { CodeInputModule } from 'angular-code-input';
     ReportComponent,
     CreateAlarmComponent,
     SensorGrafanaComponent,
-    DmsPinComponent
+    DmsPinComponent,
+    RgbPageComponent
   ],
   imports: [
     MatRadioModule,

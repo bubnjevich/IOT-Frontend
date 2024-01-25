@@ -14,7 +14,7 @@ export class ReportsPageComponent {
   constructor(private route: ActivatedRoute){
     this.routeName = this.route.snapshot.routeConfig?.path || "";
     if(this.routeName == "reports"){
-      this.title = "Reports:"
+      this.title = "DMS:"
     }
   }
 }

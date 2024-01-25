@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { io, Socket } from 'socket.io-client';  // Import the Socket class
+
 
 @Component({
   selector: 'app-database-page',
@@ -12,11 +14,11 @@ export class DatabasePageComponent {
   alarmTime: string = '';
   alarmSet: boolean = false;
   alarmActive: boolean = false;
-  private webSocket: WebSocket;
+  socket: any;
 
 
   constructor(private route: ActivatedRoute){
-    this.webSocket = new WebSocket('http://localhost:8086/budilnik');
+    this.socket = io('http://127.0.0.1:5000');
     this.routeName = this.route.snapshot.routeConfig?.path || "";
     if(this.routeName == "database"){
       this.title = "Alarm Clock:"
@@ -26,20 +28,16 @@ export class DatabasePageComponent {
   setAlarm(event: Event): void {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
-    this.alarmTime = form["alarmTime"];
+    this.alarmTime = form["alarmTime"].value;
     this.alarmSet = true;
-    this.alarmActive = true;  // Assuming the alarm is active immediately for simplicity
-
-    // Send alarm info via WebSocket
-    this.sendMessage({ alarmTime: this.alarmTime });
+    this.alarmActive = true;  
+    this.socket.emit('AlarmClockSet', { time: this.alarmTime });
   }
 
-  sendMessage(message: any): void {
-    this.webSocket.send(JSON.stringify(message));
-  }
+
 
   disableAlarm(): void {
     this.alarmActive = false;
-    // Add any additional logic for disabling the alarm
+    this.socket.emit('DisableAlarm', { time: this.alarmTime });
   }
 }

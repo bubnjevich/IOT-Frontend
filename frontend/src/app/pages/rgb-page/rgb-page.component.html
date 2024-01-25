@@ -1,0 +1,21 @@
+<div class="reports-page-container" id="reports-page">
+    <div class="main-navbar" id="navbar">
+        <app-navbar></app-navbar>
+    </div>
+    
+    <div class="workspace" id="workspace">
+        <p class="reports">{{title}}</p>  
+        <select [(ngModel)]="selectedLightSetting" class="light-setting-dropdown">
+            <option value="off">Off</option>
+            <option value="white">White</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+            <option value="purple">Purple</option>
+            <option value="light_blue">Light Blue</option>
+        </select>
+        <button (click)="submitLightSetting()">Set Light</button>
+    </div>
+</div>
+

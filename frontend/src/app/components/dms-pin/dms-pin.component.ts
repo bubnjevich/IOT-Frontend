@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {CodeInputComponent} from 'angular-code-input';
+import { io } from 'socket.io-client';
+
 
 @Component({
   selector: 'app-dms-pin',
@@ -7,17 +9,23 @@ import {CodeInputComponent} from 'angular-code-input';
   styleUrls: ['./dms-pin.component.css']
 })
 export class DmsPinComponent {
+  socket: any;
+  pin : string =  "";
 
-    onCodeChanged(code: string) {
+  onCodeChanged(newCode: string): void {
+    this.pin = newCode;
+  }
 
-    }
+  onCodeCompleted(newCode: string): void {
+    this.pin = newCode;
+  }
 
-  // this called only if user entered full code
-  onCodeCompleted(code: string) {
-    }
+  constructor(){
+    this.socket = io('http://127.0.0.1:5000');
+  }
 
 
-    send() : void {
-
-    }
+  send() : void {
+    this.socket.emit('PINInput', this.pin );
+  }
 }
