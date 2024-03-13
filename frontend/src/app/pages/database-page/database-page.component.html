@@ -2,10 +2,10 @@
     <div class="main-navbar" id="navbar">
         <app-navbar></app-navbar>
     </div>
-    
+
     <div class="workspace" id="workspace">
-        <p class="database">{{title}}</p>  
-        <form (submit)="setAlarm($event)">
+        <p class="database">{{title}}</p>
+        <form (submit)="setAlarm($event)" id="form">
             <label for="alarmTime">Set Alarm Time:</label>
             <input type="time" id="alarmTime" name="alarmTime">
             <input type="submit" value="Set Alarm">
