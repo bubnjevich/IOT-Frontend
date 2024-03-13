@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {CodeInputComponent} from 'angular-code-input';
 import { io } from 'socket.io-client';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -12,6 +13,7 @@ export class DmsPinComponent {
   socket: any;
   pin : string =  "";
 
+
   onCodeChanged(newCode: string): void {
     this.pin = newCode;
   }
@@ -20,12 +22,14 @@ export class DmsPinComponent {
     this.pin = newCode;
   }
 
-  constructor(){
+  constructor(private router: Router){
     this.socket = io('http://127.0.0.1:5000');
   }
 
 
   send() : void {
     this.socket.emit('PINInput', this.pin );
+    alert("Alarm system active!")
+    this.router.navigate(['/alarms']);
   }
 }

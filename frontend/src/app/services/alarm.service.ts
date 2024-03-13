@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { AlarmDTO } from '../models/Alarm';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 
@@ -26,7 +25,5 @@ export class AlarmService {
     return this.http.delete(this.api + `/RemoveAlarm?id=${id}`);
   }
 
-  createAlarm(dto: AlarmDTO){
-    return this.http.post(this.api + '/AddAlarm', dto);
-  }
+
 }

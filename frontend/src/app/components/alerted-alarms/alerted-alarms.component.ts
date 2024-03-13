@@ -1,8 +1,8 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import { AlarmAlert } from 'src/app/models/Alarm';
 import { AlarmService } from 'src/app/services/alarm.service';
 import { ReportService } from 'src/app/services/report.service';
-import { io, Socket } from 'socket.io-client';  // Import the Socket class
+import { io, Socket } from 'socket.io-client';
+import {Alarm} from "../../models/Alarm";  // Import the Socket class
 
 @Component({
   selector: 'app-alerted-alarms',
@@ -10,9 +10,18 @@ import { io, Socket } from 'socket.io-client';  // Import the Socket class
   styleUrls: ['./alerted-alarms.component.css']
 })
 export class AlertedAlarmsComponent implements OnInit{
-  alarmAlerts : any[] = [];
+  alarmAlerts : Alarm[] = [];
   socket: any;  // Change the type to Socket
-  public constructor(private reportService : ReportService, private alarmService: AlarmService, private cdRef: ChangeDetectorRef){
+   options: Intl.DateTimeFormatOptions = {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  };
+  public constructor(){
     // OVDE STAVI ADRESU NA KOJOJ SE SERVER IZVRSAVA - PISE TI KADA POKRENES SERVER KOJA JE ADRESA
     this.socket = io('http://127.0.0.1:5000');
   }
@@ -26,7 +35,17 @@ export class AlertedAlarmsComponent implements OnInit{
 
     this.socket.on('alarm_detected', (data: any) => {
       console.log('Alarm Detected:', data);
-      this.alarmAlerts.push(data);
+    const jsonData = JSON.parse(data);
+    console.log(jsonData.status)
+
+    const alarm: Alarm = {
+      alarm_name: jsonData.alarm_name,
+      device_name: jsonData.device_name,
+      type: jsonData.type,
+      status: jsonData.start == 0 ? "Off" : "On",
+      time: jsonData.time
+    };
+  this.alarmAlerts.push(alarm);
       // this.cdRef.detectChanges();  // Trigger change detection if needed
     });
   }
@@ -51,10 +70,9 @@ export class AlertedAlarmsComponent implements OnInit{
     return "HIGHER";
   }
 
-  formatDate(dateString : string){
+formatDate(dateString: string): string {
     const date = new Date(dateString);
-    const formattedDate = date.toUTCString();
-    console.log(formattedDate);
-    return formattedDate;
-  }
+  return date.toLocaleString('en-US', this.options);
+}
+
 }

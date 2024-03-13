@@ -3,13 +3,13 @@
       <div *ngFor="let alert of alarmAlerts" class="referral" >
         <div class="referral-metadata">
           <div class="referral-header">
-            <p class="referral-name">Device Name: {{alert.type}}</p>
+            <p class="referral-name">{{alert.alarm_name}}</p>
           </div>
           <div class="referral-body">
-              <p>Alarm Name: {{alert.alarm_name}}</p>
+              <p>Device: {{alert.device_name}}</p>
               <p>Type: {{alert.type}}</p>
               <p>Time: {{formatDate(alert.time)}}</p>
-              <p>Start or stop: {{alert.start}}</p>
+              <p>Status: {{alert.status}}</p>
           </div>
         </div>
       </div>

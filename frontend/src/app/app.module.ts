@@ -67,6 +67,7 @@ import {ReportsPageComponent} from "./pages/reports-page/reports-page.component"
     AppRoutingModule,
     BrowserAnimationsModule,
     CodeInputModule,
+    CommonModule,
  CodeInputModule.forRoot({
       codeLength: 4,
       isCharsCode: true,
