@@ -10,17 +10,22 @@ code-input {
     --item-shadow-focused: none;
     --item-border-radius: 0px;
   margin-bottom: +20px;
-
+  margin-top: +20px;
 
       color: white;
   }
 
 
 .pin-div {
-  height: 140px;
+  height: 160px;
   width: 300px;
   border-radius: 10px;
   background: var(--navy-blue);;
+
+   position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
 }
 
 button {
