@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { io, Socket } from 'socket.io-client';  // Import the Socket class
-
+import {Component, NgZone, ViewChild} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-database-page',
@@ -9,35 +9,33 @@ import { io, Socket } from 'socket.io-client';  // Import the Socket class
   styleUrls: ['./database-page.component.css']
 })
 export class DatabasePageComponent {
-  routeName : string;
-  title : string = "title";
-  alarmTime: string = '';
-  alarmSet: boolean = false;
-  alarmActive: boolean = false;
-  socket: any;
+
+  @ViewChild('picker') picker: any;
+
+  public color: ThemePalette = 'primary';
+  ind: boolean = false;
+  isPickerFocused: boolean = false;
+  isCalendarIconClicked: boolean = false;
+  isCalendarOpen: boolean = false;
 
 
-  constructor(private route: ActivatedRoute){
-    this.socket = io('http://127.0.0.1:5000');
-    this.routeName = this.route.snapshot.routeConfig?.path || "";
-    if(this.routeName == "database"){
-      this.title = "Alarm Clock:"
-    }
-  }
-  
-  setAlarm(event: Event): void {
-    event.preventDefault();
-    const form = event.target as HTMLFormElement;
-    this.alarmTime = form["alarmTime"].value;
-    this.alarmSet = true;
-    this.alarmActive = true;  
-    this.socket.emit('AlarmClockSet', { time: this.alarmTime });
+  public formGroup = new FormGroup({
+    date: new FormControl(null, [Validators.required]),
+    date2: new FormControl(null, [Validators.required])
+  })
+
+
+  ngOnInit() {
   }
 
 
 
-  disableAlarm(): void {
-    this.alarmActive = false;
-    this.socket.emit('DisableAlarm', { time: this.alarmTime });
+  closePicker() {
+    this.picker.cancel();
+  }
+
+
+  hideButton() {
+    this.ind = !this.ind;
   }
 }

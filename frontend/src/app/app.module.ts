@@ -31,7 +31,12 @@ import { DmsPinComponent } from './components/dms-pin/dms-pin.component';
 import { CodeInputModule } from 'angular-code-input';
 import { RgbPageComponent } from './pages/rgb-page/rgb-page.component';
 import {ReportsPageComponent} from "./pages/reports-page/reports-page.component";
-
+import {
+  NgxMatDatepickerInput,
+  NgxMatDatetimepicker,
+  NgxMatDatetimePickerModule, NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from "@angular-material-components/datetime-picker";
 
 
 @NgModule({
@@ -46,7 +51,7 @@ import {ReportsPageComponent} from "./pages/reports-page/reports-page.component"
     SensorGrafanaComponent,
     DmsPinComponent,
     ReportsPageComponent,
-    RgbPageComponent
+    RgbPageComponent,
   ],
   imports: [
     MatRadioModule,
@@ -68,6 +73,12 @@ import {ReportsPageComponent} from "./pages/reports-page/reports-page.component"
     BrowserAnimationsModule,
     CodeInputModule,
     CommonModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule ,// Import NgxMatNativeDateModule here
+
+
+
  CodeInputModule.forRoot({
       codeLength: 4,
       isCharsCode: true,

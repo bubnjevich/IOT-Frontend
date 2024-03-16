@@ -1,7 +1,15 @@
-.workspace{
-
-    margin-left: 250px;
+.workspace {
+  padding-inline: 10px;
+  height: 160px;
+  width: 300px;
+  border-radius: 10px;
+  border: 2px solid var(--navy-blue); /* Add border width and style */
+  position: absolute;
+  top: 20%;
+  left: 50%; /* Adjusted left to center horizontally */
+  transform: translateX(-50%); /* Better way to center horizontally */
 }
+
 .database{
     font-size: 54px;
     color: var(--navy-blue);
@@ -12,8 +20,27 @@
 }
 
 #form {
-       position: absolute;
+  position: absolute;
   top: 50%;
   left: 55%;
   transform: translate(-50%, -50%);
+}
+
+
+.mat-input-element {
+  padding:10px;
+  width: 80%;
+  height: 50px;
+}
+
+button {
+
+  background-color: var(--navy-blue);
+  margin-top: +20px;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+
 }

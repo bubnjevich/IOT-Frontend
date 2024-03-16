@@ -4,14 +4,30 @@
     </div>
 
     <div class="workspace" id="workspace">
-        <p class="database">{{title}}</p>
-        <form (submit)="setAlarm($event)" id="form">
-            <label for="alarmTime">Set Alarm Time:</label>
-            <input type="time" id="alarmTime" name="alarmTime">
-            <input type="submit" value="Set Alarm">
-            <p *ngIf="alarmSet">Set Alarm: {{ alarmTime }}</p>
-            <button *ngIf="alarmActive" (click)="disableAlarm()">Disable Alarm</button>
-        </form>
-    </div>
+<!--        <p class="database">{{title}}</p>-->
+<!--        <form (submit)="setAlarm($event)" id="form">-->
+<!--            <label for="alarmTime">Set Alarm Time:</label>-->
+<!--            <input type="time" id="alarmTime" name="alarmTime">-->
+<!--            <input type="submit" value="Set Alarm">-->
+<!--            <p *ngIf="alarmSet">Set Alarm: {{ alarmTime }}</p>-->
+<!--            <button *ngIf="alarmActive" (click)="disableAlarm()">Disable Alarm</button>-->
+<!--        </form>-->
+
+  <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date"
+         formControlName="scheduledStartDateTime" class="mat-input-element"
+   (focus)="isPickerFocused = true" (blur)="isPickerFocused = false">
+    <mat-datepicker-toggle matSuffix [for]="$any(picker)" ></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker [showSpinners]="false" [showSeconds]="false"
+                             (opened)="isCalendarOpen = true" (closed)="isCalendarOpen = false"
+                             [stepHour]="1" [stepMinute]="1" [stepSecond]="1"
+                             [touchUi]="false" [enableMeridian]="false"
+                             [color]="color"
+                             [disableMinute]="false" [hideTime]="false">
+    </ngx-mat-datetime-picker>
+<span><button *ngIf="!isCalendarOpen">Set Alarm</button></span>
+
+</div>
+
+
 </div>
 
